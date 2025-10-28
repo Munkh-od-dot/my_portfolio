@@ -1,13 +1,7 @@
-// src/lib/humor.ts
 export type HumorLevel = "none" | "light" | "medium";
 
-/**
- * Config: if true, NEVER prepend an opener like "TL;DR".
- * You can also set this from an env var when bundling.
- */
 const DISABLE_OPENERS = true;
 
-// Gentle, admissions-safe variants (no TL;DR by default)
 const openers = DISABLE_OPENERS
   ? [""]
   : [
@@ -33,17 +27,10 @@ function pick<T>(arr: T[]): T {
 }
 
 function oneEmoji(): string {
-  // Keep it subtle & admissions-safe
   const e = ["🤖", "💡", "🧠", "🎯", "📚", "🧩"];
   return pick(e);
 }
 
-/**
- * humorize(core, { level, addBullets })
- * - Adds *optional* opener/closer/quip with clean newlines.
- * - If level === "none", returns core untouched.
- * - If DISABLE_OPENERS is true, no opener text is added.
- */
 export function humorize(
   core: string,
   opts: { level?: HumorLevel; addBullets?: string[] } = {}
@@ -61,13 +48,11 @@ export function humorize(
       ? "\n• " + opts.addBullets.join("\n• ")
       : "";
 
-  // Build with real line breaks so paragraphs render nicely
   const openerBlock = opener ? opener + "\n\n" : "";
 
   if (level === "light") {
     return `${openerBlock}${core}${bullets}\n\n${quip} ${emoji}`;
   }
 
-  // medium: add a closer line too
   return `${openerBlock}${core}${bullets}\n\n${quip} ${emoji}\n${closer}`;
 }

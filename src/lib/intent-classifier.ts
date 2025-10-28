@@ -1,9 +1,4 @@
-// Intent Classification - Determines if the question is about the portfolio owner
-export type Intent =
-  | "about_person" // Questions about the portfolio owner
-  | "off_topic" // Questions not related to the portfolio owner
-  | "greeting" // Greetings and pleasantries
-  | "capabilities"; // Questions about what the chatbot can do
+export type Intent = "about_person" | "off_topic" | "greeting" | "capabilities";
 
 export interface IntentResult {
   intent: Intent;
@@ -11,11 +6,9 @@ export interface IntentResult {
   reasoning: string;
 }
 
-// Pattern-based intent classification (fast, rule-based)
 export function classifyIntentLocal(message: string): IntentResult {
   const messageLower = message.toLowerCase();
 
-  // Greeting patterns
   const greetingPatterns = [
     /^(hi|hello|hey|greetings|good morning|good afternoon|good evening)/i,
     /^(what's up|how are you|howdy)/i,
@@ -29,7 +22,6 @@ export function classifyIntentLocal(message: string): IntentResult {
     };
   }
 
-  // Capabilities patterns
   const capabilityPatterns = [
     /what can you (do|tell me|help)/i,
     /how (do you work|does this work)/i,
@@ -44,7 +36,6 @@ export function classifyIntentLocal(message: string): IntentResult {
     };
   }
 
-  // About person patterns (questions about the portfolio owner)
   const aboutPersonKeywords = [
     "you",
     "your",
@@ -69,7 +60,6 @@ export function classifyIntentLocal(message: string): IntentResult {
     messageLower.includes(keyword)
   );
 
-  // Off-topic patterns (clearly not about the person)
   const offTopicPatterns = [
     /weather/i,
     /recipe/i,
@@ -104,7 +94,6 @@ export function classifyIntentLocal(message: string): IntentResult {
     };
   }
 
-  // Default to low confidence about_person for ambiguous queries
   return {
     intent: "about_person",
     confidence: 0.5,

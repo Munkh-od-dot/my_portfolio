@@ -1,6 +1,3 @@
-// src/lib/nlp-response-generator.ts
-// Improved version — clear paragraph output, optional humor
-
 interface KnowledgeEntry {
   question: string;
   answer: string;
@@ -15,7 +12,6 @@ interface NLPResponse {
 
 export type HumorLevel = "none" | "light" | "medium";
 
-// ——— Utilities ———
 function lcFirst(s: string) {
   return s ? s.charAt(0).toLowerCase() + s.slice(1) : s;
 }
@@ -23,7 +19,6 @@ function clamp(str: string, max = 1000): string {
   return str.length > max ? str.slice(0, max - 1) + "…" : str;
 }
 
-// ——— Humor settings ———
 const OPENERS = [
   "Here’s a quick overview:",
   "Sure — here’s what I found:",
@@ -60,11 +55,9 @@ function humorize(
       ? "\n• " + opts.bullets.join("\n• ")
       : "";
 
-  // Add proper newlines for readability
   return `${opener}\n\n${core}${bullets}\n\n${quip} ${emoji}\n${closer}`;
 }
 
-// ——— Keyword & query logic ———
 function extractKeywords(query: string): string[] {
   const normalized = query.toLowerCase();
   const words = normalized.split(/\s+/);
@@ -155,7 +148,6 @@ function detectExplicitCategory(query: string): string | null {
   return null;
 }
 
-// ——— Response synthesis ———
 function synthesizeResponse(
   query: string,
   knowledgeEntries: KnowledgeEntry[]
@@ -257,7 +249,6 @@ function formatCategorizedAnswers(
   return response;
 }
 
-// ——— Public API ———
 export function generateNLPResponse(
   query: string,
   knowledgeEntries: KnowledgeEntry[],
@@ -266,7 +257,7 @@ export function generateNLPResponse(
 ): string {
   const result = synthesizeResponse(query, knowledgeEntries);
 
-  let core =
+  const core =
     result.confidence < 0.5
       ? `Based on what I know, ${lcFirst(result.text)}`
       : result.text;
@@ -275,7 +266,6 @@ export function generateNLPResponse(
     ? knowledgeEntries.slice(0, 3).map((e) => `(${e.category}) ${e.question}`)
     : undefined;
 
-  // Add humor only when confident
   if (result.confidence > 0.5) return humorize(core, { level: humor, bullets });
   return core;
 }

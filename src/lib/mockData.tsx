@@ -1,4 +1,3 @@
-// Mock data for certificates and achievements (since no database integration)
 export interface Certificate {
   id: string;
   title: string;

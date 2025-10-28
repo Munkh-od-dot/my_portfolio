@@ -1,5 +1,4 @@
-// src/app/api/upload/route.ts
-export const runtime = "nodejs"; // ⬅️ НЭМ
+export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";

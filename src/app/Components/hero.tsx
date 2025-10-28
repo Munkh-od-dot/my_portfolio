@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Mail } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -10,7 +10,6 @@ export function HeroSection() {
       className="min-h-screen flex items-center justify-center px-4 pt-16"
     >
       <div className="max-w-4xl mx-auto text-center">
-        {/* Main Content */}
         <div className="space-y-6">
           <div className="inline-block">
             <span className="px-4 py-2 text-sm font-medium bg-primary/10 text-primary rounded-full">
@@ -31,7 +30,6 @@ export function HeroSection() {
             more.
           </p>
 
-          {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4 justify-center pt-4">
             <a href="#chatbot">
               <Button size="lg" className="gap-2">
@@ -46,7 +44,6 @@ export function HeroSection() {
             </a>
           </div>
 
-          {/* Social Links */}
           <div className="flex gap-4 justify-center pt-8">
             <Button
               variant="ghost"
@@ -81,7 +78,6 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <ArrowDown className="w-6 h-6 text-muted-foreground" />
         </div>

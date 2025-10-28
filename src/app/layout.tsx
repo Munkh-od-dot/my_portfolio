@@ -4,16 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import type { ReactNode } from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 type RootLayoutProps = { children: ReactNode };
 
 export const metadata: Metadata = {

@@ -40,7 +40,6 @@ export function AchievementsSection() {
           </p>
         </div>
 
-        {/* Filter Buttons */}
         <div className="flex flex-wrap gap-2 justify-center mb-12">
           {categories.achievements.map((category) => (
             <Button
@@ -54,7 +53,6 @@ export function AchievementsSection() {
           ))}
         </div>
 
-        {/* Achievements Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredAchievements.map((achievement) => {
             const Icon =
@@ -65,7 +63,6 @@ export function AchievementsSection() {
                 key={achievement.id}
                 className="p-6 hover:shadow-lg transition-shadow group"
               >
-                {/* Icon and Category */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
                     <Icon className="w-6 h-6 text-primary" />
@@ -75,7 +72,6 @@ export function AchievementsSection() {
                   </span>
                 </div>
 
-                {/* Content */}
                 <h3 className="font-semibold text-lg text-foreground mb-2">
                   {achievement.title}
                 </h3>
@@ -93,7 +89,6 @@ export function AchievementsSection() {
           })}
         </div>
 
-        {/* Empty State */}
         {filteredAchievements.length === 0 && (
           <div className="text-center py-12">
             <p className="text-muted-foreground">

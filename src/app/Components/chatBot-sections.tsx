@@ -5,7 +5,6 @@ export function ChatbotSection() {
   return (
     <section id="chatbot" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className="w-8 h-8 text-primary" />
@@ -17,7 +16,6 @@ export function ChatbotSection() {
             background, skills, projects, or achievements. I tried to use:
           </p>
 
-          {/* Technical Features */}
           <div className="flex flex-wrap gap-3 justify-center text-sm">
             <span className="px-3 py-1 bg-primary/10 text-primary rounded-full font-medium">
               Intent Classification
@@ -34,7 +32,6 @@ export function ChatbotSection() {
           </div>
         </div>
 
-        {/* Chatbot Component */}
         <Chatbot />
       </div>
     </section>

@@ -39,9 +39,9 @@ export function CertificatesSection() {
         id: Date.now().toString(),
         title: "New Uploaded Certificate",
         issuer: "Uploaded by User",
-        date: new Date().toISOString().slice(0, 7), // YYYY-MM
+        date: new Date().toISOString().slice(0, 7),
         category: "Academic",
-        imageUrl: data.secure_url, // ✅ Cloudinary URL
+        imageUrl: data.secure_url,
       };
 
       setCertificates((prev) => [newCert, ...prev]);

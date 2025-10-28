@@ -10,7 +10,6 @@ export interface KnowledgeEntry {
 }
 
 export const knowledgeBase: KnowledgeEntry[] = [
-  // ——— About ———
   {
     id: "about-1",
     category: "about",
@@ -20,7 +19,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     keywords: ["about", "overview", "bio", "summary", "profile"],
   },
 
-  // ——— Academics ———
   {
     id: "academics-1",
     category: "academics",
@@ -39,7 +37,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     ],
   },
 
-  // ——— Programming / CS (hard skills) ———
   {
     id: "prog-1",
     category: "programming",
@@ -67,7 +64,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     ],
   },
 
-  // ——— Soft skills (kept separate on purpose) ———
   {
     id: "soft-1",
     category: "soft_skills",
@@ -91,7 +87,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     ],
   },
 
-  // ——— Projects ———
   {
     id: "projects-1",
     category: "projects",
@@ -118,7 +113,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     ],
   },
 
-  // ——— Activities / Clubs ———
   {
     id: "activities-1",
     category: "activities",
@@ -137,7 +131,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     ],
   },
 
-  // ——— Achievements ———
   {
     id: "achievements-1",
     category: "achievements",
@@ -156,17 +149,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     ],
   },
 
-  // ——— Languages ———
-  {
-    id: "languages-1",
-    category: "languages",
-    question: "What languages does he speak?",
-    answer:
-      "Mongolian (native), English (IELTS 6.5 overall), and ongoing Japanese study (aiming JLPT N4). Comfortable presenting technical content in English with concise slides and live demos.",
-    keywords: ["language", "english", "mongolian", "japanese", "ielts", "jlpt"],
-  },
-
-  // ——— Interests & Goals ———
   {
     id: "interests-1",
     category: "interests",
@@ -187,7 +169,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     ],
   },
 
-  // ——— Personality (light humor baked-in) ———
   {
     id: "personality-1",
     category: "personality",
@@ -197,11 +178,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     keywords: ["fun", "humor", "personality", "vibe", "style", "go", "ux"],
   },
 ];
-
-// ———————————————————————————————————————————————————————————————
-// Retrieval function — finds relevant knowledge entries based on query
-// (improved matching, but still lightweight and fast)
-// ———————————————————————————————————————————————————————————————
 
 function normalize(text: string): string {
   return text
@@ -225,10 +201,8 @@ export function retrieveRelevantKnowledge(
     const kw = entry.keywords.map(normalize);
     const textBag = normalize(entry.question + " " + entry.answer).split(" ");
 
-    // Token overlap scoring
     let score = 0;
 
-    // Keyword exact/substring matches
     for (const token of qTokens) {
       for (const k of kw) {
         if (k === token) score += 3;
@@ -236,12 +210,10 @@ export function retrieveRelevantKnowledge(
       }
     }
 
-    // Question/Answer token overlap (lightweight)
     for (const token of qTokens) {
       if (textBag.includes(token)) score += 0.75;
     }
 
-    // Small category prior (help “about” & “projects” appear more often)
     if (entry.category === "about" || entry.category === "projects")
       score += 0.5;
 
@@ -254,7 +226,6 @@ export function retrieveRelevantKnowledge(
     .slice(0, topK)
     .map((s) => s.entry);
 
-  // Fallback: if nothing scored above threshold, return a helpful default
   if (results.length === 0) {
     return [
       {

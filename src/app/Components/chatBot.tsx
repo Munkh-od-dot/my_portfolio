@@ -1,6 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import { Send, Bot, User, Sparkles } from "lucide-react";
+import { useState, useRef } from "react";
+import { Send, Bot, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +38,6 @@ export function Chatbot() {
     const id = crypto.randomUUID();
     setMessages((m) => [...m, { id, role: "user", text }]);
 
-    // Local “inference”
     const out = reply(text);
     setMessages((m) => [
       ...m,
@@ -49,10 +48,8 @@ export function Chatbot() {
 
   return (
     <div className="flex flex-col h-[600px] bg-background border border-border rounded-lg shadow-lg">
-      {/* header ... keep your existing header */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
-          /* keep your empty-state block */
           <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
             <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
               <Bot className="w-8 h-8" />

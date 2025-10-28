@@ -33,7 +33,6 @@ export function AboutSection() {
   return (
     <section id="about" className="py-20 px-4 bg-muted/30">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-foreground mb-4">About Me</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -44,7 +43,6 @@ export function AboutSection() {
           </p>
         </div>
 
-        {/* Highlights Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {highlights.map((highlight) => {
             const Icon = highlight.icon;
@@ -67,7 +65,6 @@ export function AboutSection() {
           })}
         </div>
 
-        {/* Additional Info */}
         <div className="mt-16 max-w-3xl mx-auto">
           <Card className="p-8">
             <h3 className="text-2xl font-bold text-foreground mb-4">
